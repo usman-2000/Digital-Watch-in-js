@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        .main {
+            background-image: url(./watch-desk-stopwatch-wallpaper-preview.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            background-position: top center;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .heading h1 {
+            font-size: 50px;
+        }
+
+        .time {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 400px;
+            font-size: 50px;
+            font-weight: 700;
+            /* color: white; */
+        }
+
+        .time h2 {
+            border: 5px solid black;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 100px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .buttons button {
+            background-color: transparent;
+            font-size: 30px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: 5px solid black;
+        }
+
+        .buttons button:hover {
+            cursor: pointer;
+            background-color: rgba(192, 121, 59, 0.801);
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="heading">
+            <h1>Stop Watch</h1>
+        </div>
+
+        <div class="time">
+            <h2 id="min">0</h2>
+            <h2 id="sec">0</h2>
+            <h2 id="msec">0</h2>
+        </div>
+        <div class="buttons">
+            <button onclick="start()">Start</button>
+            <button>Stop</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    var min = 0;
+    var sec = 0;
+    var msec = 0;
+    var interval;
+
+    var minInterval = document.getElementById('min');
+
+    var secInterval = document.getElementById('sec');
+    var msecInterval = document.getElementById('msec');
+
+    function timer() {
+        msec++
+        msecInterval.innerHTML = msec;
+        if (msec == 100) {
+            sec++
+            secInterval.innerHTML = sec;
+            msec = 0;
+
+            if (sec == 60) {
+                min++
+                minInterval.innerHTML = min;
+                sec = 0;
+            }
+        }
+
+    }
+
+    // interval = setInterval(timer,10)
+
+    function start() {
+        // interval = setInterval(timer, 10)
+
+    }
+
+    function stop() {
+        clearTimeout()
+    }
+
+    function reset() {
+        var minInterval = document.getElementById('min');
+
+        var secInterval = document.getElementById('sec');
+        var msecInterval = document.getElementById('msec');
+
+        minInterval.innerHTML = 0;
+        secInterval.innerHTML = 0;
+        msecInterval.innerHTML = 0;
+    }
+</script>
+
+</html>
