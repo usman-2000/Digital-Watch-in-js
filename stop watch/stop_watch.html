@@ -15,6 +15,7 @@
             background-position: top center;
             height: 100vh;
             z-index: 1;
+            
         }
 
         .heading {
@@ -83,8 +84,8 @@
             <h2 id="msec">0</h2>
         </div>
         <div class="buttons">
-            <button onclick="start()">Start</button>
-            <button>Stop</button>
+            <button id="btnstart" onclick="start()">Start</button>
+            <button onclick="stop()">Stop</button>
             <button onclick="reset()">Reset</button>
         </div>
     </div>
@@ -109,12 +110,11 @@
             sec++
             secInterval.innerHTML = sec;
             msec = 0;
-
-            if (sec == 60) {
-                min++
-                minInterval.innerHTML = min;
-                sec = 0;
-            }
+        }
+        else if (sec == 60) {
+            min++
+            minInterval.innerHTML = min;
+            sec = 0;
         }
 
     }
@@ -122,23 +122,25 @@
     // interval = setInterval(timer,10)
 
     function start() {
-        // interval = setInterval(timer, 10)
-
+        interval = setInterval(timer, 10)
+        var btnstart = document.querySelector('button');
+        btnstart.disabled = true;
     }
 
     function stop() {
-        clearTimeout()
+        clearInterval(interval)
+        btnstart.disabled = false;
     }
 
     function reset() {
-        var minInterval = document.getElementById('min');
+        min = 0;
+        sec = 0;
+        msec = 0;
 
-        var secInterval = document.getElementById('sec');
-        var msecInterval = document.getElementById('msec');
-
-        minInterval.innerHTML = 0;
-        secInterval.innerHTML = 0;
-        msecInterval.innerHTML = 0;
+        minInterval.innerHTML = min;
+        secInterval.innerHTML = sec;
+        msecInterval.innerHTML = msec;
+        stop()
     }
 </script>
 
